@@ -1,0 +1,57 @@
+<div class="container-fluid" ng-controller="RoomListsCtrl">
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10" >
+			<div class="row">
+				<div class="col-md-4 col-sm-6" ng-repeat="roomInstance in rooms">
+					<div class="wPanel">
+						<a ui-sref="room({'roomId' : '{{roomInstance.rid}}'})">
+							<div class="wPaneLayer">
+								<div class="wrapper">
+									<div>
+										<p> <strong>Description</strong> </p>
+										<p>
+											{{roomInstance.description}}
+										</p>
+									</div>
+								</div>
+							</div>
+							<img src="/resource/screenshots/{{roomInstance.rid}}.png" alt="{{roomInstance.roomName}}"/>
+						</a>
+						<div class="wrap">
+							<p class="row">
+							    <span class="col-md-4 name">
+							    	<strong>Room Name:</strong> 
+							    </span>
+							    <span class="col-md-8 value">
+							    	<span tooltip-placement="top-left" uib-tooltip="{{roomInstance.roomName}}">
+							    		 {{roomInstance.roomName | omitStringFilter:10}}
+							    	</span>
+							    </span>
+						    </p>
+							<p class="row">
+							    <span class="col-md-4 name">
+							    	<strong>Room Owner:</strong> 
+							    </span>
+							    <span class="col-md-8 value" >
+							    	<span tooltip-placement="top-left" uib-tooltip="{{roomInstance.owner.username}}">
+							    		 {{roomInstance.owner.username | omitStringFilter:10}}
+							    	</span>
+							    </span>
+						    </p>
+						    <p class="row">
+						    	<span class="col-md-4 name">
+							    	<strong>Room Tages:</strong> 
+							    </span>
+							    <span class="col-md-8" style="text-align:left;">
+							    	 <span ng-repeat="tag in roomInstance.tags" ui-sref="search({tag: tag, name: ''})"  class="label label-info" tooltip-placement="top-left" uib-tooltip="{{tag}}">	
+							    	{{tag | omitStringFilter:5}}
+							    	</span>
+							    </span>
+						    </p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

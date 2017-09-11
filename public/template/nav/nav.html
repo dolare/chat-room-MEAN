@@ -1,0 +1,78 @@
+<nav class="navbar navbar-inverse" ng-controller="NavCtrl" id="navId">
+    <div class="container-fluid">
+        <!-- search button pannel -->
+        <div class="row">
+            <div class="col-md-offset-1 col-md-3 hidden-xs" style="position:relative;">
+                <div class="searchPanel">
+                    <div class="input-group">
+                      <input type="text" class="form-control" placeholder="Search for room" ng-model="searchString" ng-keydown="$event.which === 13 && search(searchString)">
+                      <span class="input-group-btn">
+                        <button class="btn btn-default" type="button" ng-click="search(searchString)">Go!</button>
+                      </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">IChat</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-right" ng-controller="LoginCtrl">
+                <li ng-if="login.status == 'ok'">
+                    <a><span>Welcome,</span></a>
+                </li>
+                <li ng-controller="loginUserNameCtrl">
+                    <a>
+                        <span ng-bind="login.username">
+                        </span>
+                        <span ng-if="!login.verify && login.username" class="unactive">unactive</span>
+                    </a>
+                </li>
+                <li ng-click="openSignup()" ng-if="login.status != 'ok'">
+                    <a href="" >
+                        <span class="glyphicon glyphicon-user" ></span > Sign Up
+                    </a>
+                </li>
+                <li ng-click="openLogin()" ng-if="login.status != 'ok'">
+                    <a href="" >
+                        <span class="glyphicon glyphicon-log-in" ></span > Login
+                    </a>
+                </li>
+                <li ng-if="login.status == 'ok'" class="dropdown">
+                    <!-- <a ui-sref="roominfos">
+
+                    
+                        <span class="glyphicon glyphicon-log-in" ></span > rooms
+                    </a> -->
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-cog"></span>
+                          Settings <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" >
+                         <li>
+                            <a ui-sref="roominfos">
+                                <span class="glyphicon glyphicon-log-in" ></span > rooms
+                            </a> 
+                        </li>
+                        <li>
+                            <a ui-sref="profile">
+                                <span class="glyphicon glyphicon-log-in" ></span > 
+                                profile
+                            </a> 
+                        </li>
+                    </ul>
+                </li>
+                <li ng-click="logOut()" ng-if="login.status == 'ok'">
+                    <a href="" >
+                    <span class="glyphicon glyphicon-log-in" ></span > Logout
+                </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
